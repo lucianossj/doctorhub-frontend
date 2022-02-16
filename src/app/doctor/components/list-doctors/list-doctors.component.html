@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
-            <app-new-doctor></app-new-doctor>
+            <app-new-doctor [specialties]=specialties (doctorInserted)="getDoctors()"></app-new-doctor>
         </div>
     </div>
 
@@ -23,15 +23,18 @@
                                 <th> Ações </th>
                             </thead>
                             <tbody>
-                                <tr class="tr-done mt-2 hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> fulano@doc.com </td>
-                                    <td> Cardiologista </td>
-                                    <td class=>
-                                        <button class="btn btn-md btn-primary">
-                                            <i class="fa fa-eye"></i> Visualizar
-                                        </button>
-                                        <button class="btn btn-md btn-danger m-1">
+                                <tr
+                                    *ngFor="let doctor of doctors"
+                                    class="tr-done mt-2 hover-animation hover-animation-sm">
+                                    <td> {{ doctor.fullname }} </td>
+                                    <td> {{ doctor.username }} </td>
+                                    <td> {{ doctor.specialty?.description }} </td>
+                                    <td *ngIf="doctor.code">
+                                        <app-view-doctor
+                                            [specialties]=specialties
+                                            [selectedDoctor]=doctor
+                                            (doctorUpdated)=getDoctors()></app-view-doctor>
+                                        <button class="btn btn-md btn-danger m-1" (click)="removeDoctor(doctor.code)">
                                             <i class="fa fa-times"></i> Remover
                                         </button>
                                     </td>

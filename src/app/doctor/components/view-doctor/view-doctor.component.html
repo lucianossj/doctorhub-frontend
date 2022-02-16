@@ -1,0 +1,58 @@
+<button class="btn btn-md btn-primary" (click)=openModal(modal)>
+    <i class="fa fa-eye"></i> Visualizar
+</button>
+
+<ng-template #modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title"> <i class="fa fa-user-doctor"></i> Dados - Dr. {{ selectedDoctor.fullname }}</h3>
+            <hr>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <label>Nome completo:</label>
+                        <input type="text" class="form-control" formControlName="fullname">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <label>Nome de usuário:</label>
+                        <input type="text" class="form-control" formControlName="username">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label>Senha:</label>
+                        <input type="password" class="form-control" formControlName="password">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Especialidade:</label>
+                        <select class="form-control" formControlName="specialty">
+                            <option
+                                *ngFor="let specialty of specialties"
+                                [value]="specialty.code"> {{ specialty.description }}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()"> 
+                <i class="fa fa-times-circle"></i>
+                Fechar
+            </button>        
+            <button type="button" class="btn btn-danger" *ngIf="!editMode" (click)="activeEditMode()">
+                <i class="fa fa-pencil"></i>
+                Modo edição
+            </button>
+            <button type="button" class="btn btn-success" *ngIf="editMode" [disabled]="!form.valid" (click)=updateDoctor()>
+                <i class="fa fa-check"></i>
+                Atualizar
+            </button>
+        </div>
+    </div>
+</ng-template>

@@ -34,4 +34,15 @@ export class AlertService {
     });
   }
 
+  public confirmation(alertTitle: string, denyButtonText: string): Promise<boolean> {
+    return Swal.fire({
+      title: alertTitle,
+      showDenyButton: true,
+      showCancelButton: true,
+      showConfirmButton: false,
+      denyButtonText: denyButtonText,
+      cancelButtonText: 'Cancelar'
+    }).then(result => result.isDenied)
+  }
+
 }

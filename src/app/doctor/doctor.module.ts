@@ -6,13 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorService } from './services/doctor.service';
 import { DoctorRestService } from './services/doctor-rest.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewDoctorComponent } from './components/view-doctor/view-doctor.component';
 
 
 
 @NgModule({
   declarations: [
     ListDoctorsComponent,
-    NewDoctorComponent
+    NewDoctorComponent,
+    ViewDoctorComponent
   ],
   imports: [
     CommonModule,

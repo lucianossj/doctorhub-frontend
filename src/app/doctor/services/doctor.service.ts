@@ -5,6 +5,7 @@ import { GenericDataService } from 'src/app/shared/services/data/generic-data.se
 import { GenericDataModel } from 'src/app/shared/services/data/models/generic-data.model';
 import { InsertDoctorRequest } from '../integration/request/insert-doctor.request';
 import { DoctorMapper } from '../mappers/doctor.mapper';
+import { DoctorFormModel } from '../models/doctor-form.model';
 import { DoctorModel } from '../models/doctor.model';
 import { DoctorRestService } from './doctor-rest.service';
 
@@ -16,9 +17,22 @@ export class DoctorService {
     private genericDataService: GenericDataService
   ) { }
 
-  public insertDoctor(doctor: DoctorModel): Observable<void> {
-    const request: InsertDoctorRequest = DoctorMapper.modelToRequest(doctor);
+  public insertDoctor(doctor: DoctorFormModel): Observable<void> {
+    const request: InsertDoctorRequest = DoctorMapper.formModelToRequest(doctor);
     return this.rest.insertDoctor(request);
+  }
+
+  public updateDoctor(code: number, doctor: DoctorFormModel): Observable<void> {
+    const request: InsertDoctorRequest = DoctorMapper.formModelToRequest(doctor);
+    return this.rest.updateDoctor(code, request);
+  }
+
+  public getDoctors(): Observable<DoctorModel[]> {
+    return this.rest.getDoctors();
+  }
+
+  public removeDoctor(code: number): Observable<void> {
+    return this.rest.removeDoctor(code);
   }
 
   get doctorsSpecialty(): Observable<GenericDataModel[]> {
