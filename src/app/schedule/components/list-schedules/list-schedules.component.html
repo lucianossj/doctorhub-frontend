@@ -27,11 +27,12 @@
                                 <th> Ações </th>
                             </thead>
                             <tbody>
-                                <tr class="tr-done mt-2 hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> Dr. Ciclano </td>
-                                    <td> Cardiologista </td>
-                                    <td> 15/02 </td>
+                                <tr *ngFor="let schedule of schedules"
+                                    class="tr-done mt-2 hover-animation hover-animation-sm">
+                                    <td> {{ schedule.patient.fullname }} </td>
+                                    <td> {{ schedule.doctor.fullname }} </td>
+                                    <td> {{ schedule.specialty.description }} </td>
+                                    <td> {{ schedule.date }} </td>
                                     <td class=>
                                         <button class="btn btn-md btn-primary">
                                             <i class="fa fa-eye"></i> Visualizar ficha de atendimento

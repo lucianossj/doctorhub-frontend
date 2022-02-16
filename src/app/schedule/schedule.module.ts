@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListSchedulesComponent } from './components/list-schedules/list-schedules.component';
+import { ScheduleService } from './services/schedule.service';
+import { ScheduleRestService } from './services/schedule-rest.service';
 
 
 
@@ -10,6 +12,10 @@ import { ListSchedulesComponent } from './components/list-schedules/list-schedul
   ],
   imports: [
     CommonModule
+  ],
+  providers: [
+    ScheduleService,
+    ScheduleRestService
   ]
 })
 export class ScheduleModule { }
