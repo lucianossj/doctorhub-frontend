@@ -1,0 +1,14 @@
+
+.dashboard-box {
+    background-color: rgb(244, 244, 248);
+    border-radius: 30px;
+}
+
+.tr-done {
+    background-color: #BDFE98;
+}
+
+.tr-canceled {
+    background-color: #FEB798;
+}
+
