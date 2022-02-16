@@ -26,10 +26,11 @@
                                 <th> Ações </th>
                             </thead>
                             <tbody>
-                                <tr class="tr-done mt-2 hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> 99836748 </td>
-                                    <td> fulano@doc.com </td>
+                                <tr *ngFor="let patient of patients"
+                                    class="tr-done mt-2 hover-animation hover-animation-sm">
+                                    <td> {{ patient.fullname }} </td>
+                                    <td> {{ patient.phone }} </td>
+                                    <td> {{ patient.email }} </td>
                                     <td class=>
                                         <button class="btn btn-md btn-primary">
                                             <i class="fa fa-eye"></i> Visualizar

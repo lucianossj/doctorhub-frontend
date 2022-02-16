@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   doctor: `http://127.0.0.1:3000/doctor`,
+  patient: `http://127.0.0.1:3000/patient`,
   generic: `http://127.0.0.1:3000`
 };
 
