@@ -1,0 +1,9 @@
+
+.bar-option {
+    -webkit-transition: transform 0.4s ease-in-out;
+}
+
+.bar-option:hover {
+    transform: scale(1.2);
+    -webkit-transition: transform 0.4s ease-in-out;
+}
