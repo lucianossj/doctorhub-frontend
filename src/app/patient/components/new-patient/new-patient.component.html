@@ -1,0 +1,66 @@
+
+<button class="btn btn-lg btn-success" (click)="openModal(modal)">
+    <i class="fa fa-plus-circle"></i>
+    Cadastrar novo paciente
+</button>
+
+<ng-template #modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title"> <i class="fa fa-user-doctor"></i> Novo paciente </h3>
+            <hr>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <label>Nome completo:</label>
+                        <input type="text" class="form-control" formControlName="fullname">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label>Data de nascimento:</label>
+                        <input type="text" class="form-control" formControlName="birth" mask="00/00/0000">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Endereço:</label>
+                        <input type="text" class="form-control" formControlName="address">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label>Sexo:</label>
+                        <select class="form-control" formControlName="gender">
+                            <option value="Masculino"> Masculino </option>
+                            <option value="Feminino"> Feminino </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Telefone:</label>
+                        <input type="text" class="form-control" formControlName="phone" mask="(00) 0 0000-0000">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <label>E-mail:</label>
+                        <input type="text" class="form-control" formControlName="email">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()"> 
+                <i class="fa fa-times-circle"></i>
+                Cancelar
+            </button>
+            <button type="button" class="btn btn-success" (click)="insertPatient()" [disabled]="!form.valid">
+                <i class="fa fa-plus-circle"></i>
+                Cadastrar
+            </button>
+        </div>
+    </div>
+</ng-template>
