@@ -32,10 +32,11 @@
                         <input type="password" class="form-control" formControlName="password">
                     </div>
                     <div class="col-md-6">
-                        <label>Especialidade</label>
+                        <label>Especialidade:</label>
                         <select class="form-control" formControlName="specialty">
-                            <option [selected]="true">Cardiologista</option>
-                            <option>Clínico geral</option>
+                            <option
+                                *ngFor="let specialty of specialties"
+                                [value]="specialty.code"> {{ specialty.description }}</option>
                         </select>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                 <i class="fa fa-times-circle"></i>
                 Cancelar
             </button>
-            <button type="button" class="btn btn-success" (click)="insertDoctor()">
+            <button type="button" class="btn btn-success" (click)="insertDoctor()" [disabled]="!form.valid">
                 <i class="fa fa-plus-circle"></i>
                 Cadastrar
             </button>

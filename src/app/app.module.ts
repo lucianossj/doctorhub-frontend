@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';

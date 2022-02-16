@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { NavigationService } from './services/navigation.service';
+import { NavigationService } from './services/utils/navigation.service';
+import { GenericDataService } from './services/data/generic-data.service';
+import { GenericDataRestService } from './services/data/generic-data-rest.service';
+import { AlertService } from './services/utils/alert.service';
 
 
 
@@ -16,7 +19,10 @@ import { NavigationService } from './services/navigation.service';
     SidebarComponent
   ],
   providers: [
-    NavigationService
+    NavigationService,
+    GenericDataService,
+    GenericDataRestService,
+    AlertService
   ]
 })
 export class SharedModule { }
