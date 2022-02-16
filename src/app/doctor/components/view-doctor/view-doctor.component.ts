@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { DoctorService } from '../../services/doctor.service';
   templateUrl: './view-doctor.component.html',
   styleUrls: ['./view-doctor.component.css']
 })
-export class ViewDoctorComponent implements OnInit {
+export class ViewDoctorComponent implements OnInit, OnDestroy {
 
   @Input()
   public specialties: GenericDataModel[] = [];
@@ -39,6 +39,10 @@ export class ViewDoctorComponent implements OnInit {
   public ngOnInit(): void {
     this.generateForm();
     this.form.disable();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   public openModal(template: TemplateRef<any>): void {

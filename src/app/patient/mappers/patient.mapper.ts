@@ -6,12 +6,12 @@ export class PatientMapper {
 
     public static modelToRequest(model: PatientModel): InsertPatientRequest {
         return Builder<InsertPatientRequest>()
-            .fullname(model.fullname)
-            .birth(model.birth)
-            .address(model.address)
-            .gender(model.gender)
-            .phone(model.phone)
-            .email(model.email)
+            .fullname(model?.fullname)
+            .birth(model?.birth)
+            .address(model?.address)
+            .gender(model?.gender)
+            .phone(model?.phone)
+            .email(model?.email)
         .build();
     }
 

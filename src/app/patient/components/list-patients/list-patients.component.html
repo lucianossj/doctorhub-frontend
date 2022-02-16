@@ -29,9 +29,9 @@
                                     <td> {{ patient.phone }} </td>
                                     <td> {{ patient.email }} </td>
                                     <td class=>
-                                        <button class="btn btn-md btn-primary">
-                                            <i class="fa fa-eye"></i> Visualizar
-                                        </button>
+                                        <app-view-patient
+                                            [selectedPatient]=patient
+                                            (patientUpdated)=getPatients()></app-view-patient>
                                         <button class="btn btn-md btn-danger m-1">
                                             <i class="fa fa-times"></i> Remover
                                         </button>

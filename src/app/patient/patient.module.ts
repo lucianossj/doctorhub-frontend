@@ -6,10 +6,12 @@ import { PatientRestService } from './services/patient-rest.service';
 import { NewPatientComponent } from './components/new-patient/new-patient.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { ViewPatientComponent } from './components/view-patient/view-patient.component';
 @NgModule({
   declarations: [
     ListPatientsComponent,
-    NewPatientComponent
+    NewPatientComponent,
+    ViewPatientComponent
   ],
   imports: [
     CommonModule,
