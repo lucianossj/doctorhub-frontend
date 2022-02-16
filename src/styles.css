@@ -1,4 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+.hover-animation {
+    -webkit-transition: transform 0.4s ease-in-out;
+}
+
+.hover-animation:hover {
+    transform: scale(1.2);
+    -webkit-transition: transform 0.4s ease-in-out;
+}
+
 .title-font {
     font-family: 'MuseoModerno', cursive;
 }
@@ -10,4 +20,9 @@
 
 .data-font {
     font-family: 'Baloo 2', cursive;
+}
+
+.card-box {
+    background-color: rgb(244, 244, 248);
+    border-radius: 30px;
 }
