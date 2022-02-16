@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DoctorModule } from './doctor/doctor.module';
+import { PatientModule } from './patient/patient.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     DashboardModule,
-    DoctorModule
+    DoctorModule,
+    PatientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

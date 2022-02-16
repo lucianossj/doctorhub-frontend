@@ -9,6 +9,11 @@
     -webkit-transition: transform 0.4s ease-in-out;
 }
 
+.hover-animation-sm:hover {
+    transform: scale(1.02);
+    -webkit-transition: transform 0.4s ease-in-out;
+}
+
 .title-font {
     font-family: 'MuseoModerno', cursive;
 }

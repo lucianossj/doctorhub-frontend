@@ -1,5 +1,5 @@
 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <a (click)="navigateTo('dashboard')"  class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <span class="fs-5 d-none d-sm-inline title-font"> <i class="fa fa-solid fa-syringe"></i> DoctorHub </span>
     </a>
     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start secondary-font" id="menu">
@@ -17,7 +17,7 @@
           </a>
       </li>
       <li class="nav-item hover-animation">
-        <a href="#" class="nav-link align-middle px-0">
+        <a (click)="navigateTo('patients')"  class="nav-link align-middle px-0">
           <i class="fa fa-user-injured"></i><span class="ms-1 d-none d-sm-inline">Pacientes</span>
         </a>
       </li>
