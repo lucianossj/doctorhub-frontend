@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InsertScheduleRequest } from '../integration/request/insert-schedule.request';
 import { ScheduleMapper } from '../mappers/schedule.mapper';
+import { ScheduleFormModel } from '../models/schedule-form.model';
 import { ScheduleModel } from '../models/schedule.model';
 import { ScheduleRestService } from './schedule-rest.service';
 
@@ -12,8 +13,8 @@ export class ScheduleService {
     private rest: ScheduleRestService
   ) { }
 
-  public insertSchedule(schedule: ScheduleModel): Observable<void> {
-    const request: InsertScheduleRequest = ScheduleMapper.modelToRequest(schedule);
+  public insertSchedule(schedule: ScheduleFormModel): Observable<void> {
+    const request: InsertScheduleRequest = ScheduleMapper.formModelToRequest(schedule);
     return this.rest.insertSchedule(request);
   }
 

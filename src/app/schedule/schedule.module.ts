@@ -3,15 +3,22 @@ import { CommonModule } from '@angular/common';
 import { ListSchedulesComponent } from './components/list-schedules/list-schedules.component';
 import { ScheduleService } from './services/schedule.service';
 import { ScheduleRestService } from './services/schedule-rest.service';
+import { NewScheduleComponent } from './components/new-schedule/new-schedule.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
 @NgModule({
   declarations: [
-    ListSchedulesComponent
+    ListSchedulesComponent,
+    NewScheduleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     ScheduleService,

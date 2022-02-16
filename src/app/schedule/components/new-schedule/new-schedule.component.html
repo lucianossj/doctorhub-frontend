@@ -1,0 +1,86 @@
+
+<button class="btn btn-lg btn-success" (click)="openModal(modal)">
+    <i class="fa fa-plus-circle"></i>
+    Agendar nova consulta
+</button>
+
+<ng-template #modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title"> <i class="fa fa-user-doctor"></i> Agendamento nova consulta </h3>
+            <hr>
+        </div>
+        <div class="modal-body">
+
+            <!-- 
+                date
+                hour
+                status
+                specialty
+                doctor
+                patient
+             -->
+
+            <form [formGroup]="form">
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label>Data:</label>
+                        <input type="text" class="form-control" formControlName="date" mask="00/00/0000">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Hora:</label>
+                        <input type="text" class="form-control" formControlName="hour" mask="00:00">
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <!-- <div class="col-md-6">
+                        <label>Status:</label>
+                        <select class="form-control" formControlName="status">
+                            <option
+                                *ngFor="let stat of status"
+                                [value]="stat.code"> {{ stat.description }}</option>
+                        </select>
+                    </div> -->
+                    <div class="col-md-12">
+                        <label>Especialidade:</label>
+                        <select class="form-control" formControlName="specialty">
+                            <option
+                                *ngFor="let specialty of specialtyToSelect"
+                                [value]="specialty.code"> {{ specialty.description }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <label>Médico:</label>
+                        <select class="form-control" formControlName="doctor">
+                            <option
+                                *ngFor="let doctor of doctorsToSelect"
+                                [value]="doctor.code"> Dr. {{ doctor.fullname }} - {{ doctor.specialty?.description }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Paciente:</label>
+                        <select class="form-control" formControlName="patient">
+                            <option
+                                *ngFor="let patient of patients"
+                                [value]="patient.code"> {{ patient.fullname }}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()"> 
+                <i class="fa fa-times-circle"></i>
+                Cancelar
+            </button>
+            <button type="button" class="btn btn-success" (click)="insertSchedule()" [disabled]="!form.valid">
+                <i class="fa fa-plus-circle"></i>
+                Cadastrar
+            </button>
+        </div>
+    </div>
+</ng-template>

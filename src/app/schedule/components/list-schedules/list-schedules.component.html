@@ -6,10 +6,12 @@
 
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
-            <button class="btn btn-lg btn-success">
-                <i class="fa fa-plus-circle"></i>
-                Agendar nova consulta
-            </button>
+            <app-new-schedule
+                [status]=status
+                [specialties]=specialties
+                [doctors]=doctors
+                [patients]=patients
+            ></app-new-schedule>
         </div>
     </div>
 
