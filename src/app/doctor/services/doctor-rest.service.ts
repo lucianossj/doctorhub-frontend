@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InsertDoctorRequest } from '../integration/request/insert-doctor.request';
+import { LoginDoctorRequest } from '../integration/request/login-doctor.request';
 import { DoctorModel } from '../models/doctor.model';
 
 @Injectable()
@@ -13,6 +14,11 @@ export class DoctorRestService {
   ) { }
 
   private url = environment.doctor;
+
+
+  public login(login: LoginDoctorRequest): Observable<DoctorModel> {
+    return this.http.post<DoctorModel>(`${this.url}/login`, login);
+  }
 
   public insertDoctor(request: InsertDoctorRequest): Observable<void> {
     return this.http.post<void>(`${this.url}`, request);

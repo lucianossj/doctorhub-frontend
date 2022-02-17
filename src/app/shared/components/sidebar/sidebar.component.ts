@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageKeysEnum } from '../../local-storage/local-storage-keys.enum';
+import { AlertService } from '../../services/utils/alert.service';
 import { NavigationService } from '../../services/utils/navigation.service';
 
 @Component({
@@ -9,7 +11,8 @@ import { NavigationService } from '../../services/utils/navigation.service';
 export class SidebarComponent implements OnInit {
 
   constructor(
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private alert: AlertService
   ) { }
 
   public ngOnInit(): void {
@@ -17,6 +20,12 @@ export class SidebarComponent implements OnInit {
 
   public navigateTo(url: string): void {
     this.navigationService.navigateTo(url);
+  }
+
+  public logout(): void {
+    localStorage.setItem(LocalStorageKeysEnum.DOCTOR, '');
+    this.alert.success('Até mais!', '');
+    this.navigateTo('login');
   }
 
 }

@@ -7,7 +7,6 @@ import { GenericDataRestService } from './services/data/generic-data-rest.servic
 import { AlertService } from './services/utils/alert.service';
 
 
-
 @NgModule({
   declarations: [
     SidebarComponent
