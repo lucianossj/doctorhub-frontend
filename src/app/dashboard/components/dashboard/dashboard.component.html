@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <h3 class="title-font"> 
         <i class="fa fa-comment-medical"></i>
-        Olá, Dr. Fulano! </h3>
+        Olá, Dr(a). {{ doctor.fullname }}! </h3>
 
     <div class="row mt-5 data-font d-flex">
         <div class="col-md-6">
             <div class="card-box">
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <h5 class="my-3"> <i class="fa fa-calendar-day"></i> <b> Consultas de hoje (15/02) </b> </h5>
+                        <h5 class="my-3"> <i class="fa fa-calendar-day"></i> <b> Consultas de hoje ({{todayDate}}) </b> </h5>
                     </div>
                 </div>
                 <hr>
@@ -21,20 +21,20 @@
                                 <th> Atendimento </th>
                             </thead>
                             <tbody>
-                                <tr class="tr-done hover-animation hover-animation-sm">
-                                    <td> Ciclano </td>
-                                    <td> 14:20 </td>
-                                    <td> <i class="ml-2 fa fa-check text-success"></i> Executado </td>
-                                </tr>
-                                <tr class="tr-canceled hover-animation hover-animation-sm">
-                                    <td> Beltrano </td>
-                                    <td> 17:30 </td>
-                                    <td> <i class="ml-5 fa fa-times text-danger"></i> Cancelado </td>
-                                </tr>
-                                <tr class="hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> 18:45 </td>
-                                    <td> <i class="ml-5 fa fa-spinner fa-spin"></i> Pendente </td>
+                                <tr *ngFor="let schedule of todaySchedules"
+                                    class="hover-animation hover-animation-sm"
+                                    [ngClass]="{
+                                        'tr-done': schedule.status?.code === 1,
+                                        'tr-canceled': schedule.status?.code === 2,
+                                        'tr-pending': schedule.status?.code === 3}">
+                                    <td> {{ schedule.patient?.fullname }} </td>
+                                    <td> {{ schedule?.hour }} </td>
+                                    <td> <i 
+                                        class="ml-2 fa "
+                                        [ngClass]="{
+                                            'fa-check text-success': schedule.status?.code === 1,
+                                            'fa-times text-danger': schedule.status?.code === 2,
+                                            'fa-spinner fa-spin': schedule.status?.code === 3}"></i> {{ schedule.status?.description }} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -47,7 +47,7 @@
             <div class="card-box">
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <h5 class="my-3"> <i class="fa fa-calendar-week"></i> <b> Consultas de amanhã (16/02) </b> </h5>
+                        <h5 class="my-3"> <i class="fa fa-calendar-week"></i> <b> Consultas de amanhã ({{tomorrowDate}}) </b> </h5>
                     </div>
                 </div>
                 <hr>
@@ -59,17 +59,9 @@
                                 <th> Horário </th>
                             </thead>
                             <tbody>
-                                <tr class="hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> 12:15 </td>
-                                </tr>
-                                <tr class="hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> 17:20 </td>
-                                </tr>
-                                <tr class="hover-animation hover-animation-sm">
-                                    <td> Fulano </td>
-                                    <td> 18:45 </td>
+                                <tr *ngFor="let schedule of tomorrowSchedules" class="hover-animation hover-animation-sm">
+                                    <td> {{ schedule.patient?.fullname }} </td>
+                                    <td> {{ schedule.hour }} </td>
                                 </tr>
                             </tbody>
                         </table>

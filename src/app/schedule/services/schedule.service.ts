@@ -27,6 +27,10 @@ export class ScheduleService {
     return this.rest.getSchedules();
   }
 
+  public getSchedulesByDoctor(code: number): Observable<ScheduleModel[]> {
+    return this.rest.getSchedulesByDoctor(code);
+  }
+
   public removeSchedules(code: number): Observable<void> {
     return this.rest.removeSchedule(code);
   }

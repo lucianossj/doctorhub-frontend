@@ -26,6 +26,10 @@ export class ScheduleRestService {
     return this.http.get<ScheduleModel[]>(`${this.url}`);
   }
 
+  public getSchedulesByDoctor(code: number): Observable<ScheduleModel[]> {
+    return this.http.get<ScheduleModel[]>(`${this.url}/doctor/${code}`);
+  }
+
   public removeSchedule(code: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${code}`);
   }
