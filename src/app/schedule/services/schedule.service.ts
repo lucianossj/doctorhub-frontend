@@ -30,4 +30,8 @@ export class ScheduleService {
   public removeSchedules(code: number): Observable<void> {
     return this.rest.removeSchedule(code);
   }
+
+  public cancelSchedule(code: number): Observable<void> {
+    return this.rest.cancelSchedule(code);
+  }
 }

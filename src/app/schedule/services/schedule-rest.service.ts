@@ -30,4 +30,8 @@ export class ScheduleRestService {
     return this.http.delete<void>(`${this.url}/${code}`);
   }
 
+  public cancelSchedule(code: number): Observable<void> {
+    return this.http.patch<void>(`${this.url}/cancel/${code}`, null);
+  }
+
 }

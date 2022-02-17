@@ -7,6 +7,7 @@ import { PatientService } from 'src/app/patient/services/patient.service';
 import { GenericDataEndpointEnum } from 'src/app/shared/services/data/enum/generic-data-endpoint.enum';
 import { GenericDataService } from 'src/app/shared/services/data/generic-data.service';
 import { GenericDataModel } from 'src/app/shared/services/data/models/generic-data.model';
+import { AlertService } from 'src/app/shared/services/utils/alert.service';
 import { ScheduleModel } from '../../models/schedule.model';
 import { ScheduleService } from '../../services/schedule.service';
 
@@ -28,19 +29,44 @@ export class ListSchedulesComponent implements OnInit, OnDestroy {
     private service: ScheduleService,
     private genericService: GenericDataService,
     private doctorService: DoctorService,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private alert: AlertService
   ) { }
 
   public ngOnInit(): void {
+    this.getData();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  public cancelSchedule(code: number): void {
+    this.alert.confirmation('Tem certeza que deseja cancelar essa consulta?', 'Confirmar')
+      .then(result => {
+        if (result) this.confirmCancel(code)
+      });
+  }
+
+  private confirmCancel(code: number): void {
+    this.subscriptions.add(
+      this.service.cancelSchedule(code).subscribe(
+        () => this.manageScheduleCancelSuccess()
+      )
+    );
+  }
+
+  private manageScheduleCancelSuccess(): void {
+    this.alert.success('Sucesso', 'Consulta cancelada com sucesso.');
+    this.getData();
+  }
+
+  public getData(): void {
     this.getSchedules();
     this.getStatus();
     this.getSpecialties();
     this.getDoctors();
     this.getPatients();
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   public getSchedules(): void {

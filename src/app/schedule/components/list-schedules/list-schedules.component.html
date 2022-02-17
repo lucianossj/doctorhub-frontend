@@ -11,6 +11,7 @@
                 [specialties]=specialties
                 [doctors]=doctors
                 [patients]=patients
+                (scheduleInserted)=getData()
             ></app-new-schedule>
         </div>
     </div>
@@ -39,9 +40,16 @@
                                         <button class="btn btn-md btn-primary">
                                             <i class="fa fa-eye"></i> Visualizar ficha de atendimento
                                         </button>
-                                        <button class="btn btn-md btn-danger m-1">
+                                        <button 
+                                            (click)=cancelSchedule(schedule.code)
+                                            *ngIf="schedule.status.code != 2; else canceled" class="btn btn-md btn-danger m-1">
                                             <i class="fa fa-times"></i> Cancelar consulta
                                         </button>
+                                        <ng-template #canceled>
+                                            <button class="btn btn-md btn-outline-danger m-1" disabled>
+                                                <i class="fa fa-times"></i> Cancelada
+                                            </button>
+                                        </ng-template>
                                     </td>
                                 </tr>
                             </tbody>
