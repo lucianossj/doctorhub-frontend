@@ -60,6 +60,7 @@ export class NewScheduleComponent implements OnInit {
 
   public closeModal(): void {
     this.modal.hide();
+    this.form.reset();
   }
 
   public insertSchedule(): void {
