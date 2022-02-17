@@ -32,23 +32,26 @@
                             <tbody>
                                 <tr *ngFor="let schedule of schedules"
                                     class="tr-done mt-2 hover-animation hover-animation-sm">
-                                    <td> {{ schedule.patient.fullname }} </td>
-                                    <td> {{ schedule.doctor.fullname }} </td>
-                                    <td> {{ schedule.specialty.description }} </td>
-                                    <td> {{ schedule.date }} </td>
-                                    <td class=>
-                                        <button class="btn btn-md btn-primary">
-                                            <i class="fa fa-eye"></i> Visualizar ficha de atendimento
-                                        </button>
+                                    <td> {{ schedule?.patient?.fullname }} </td>
+                                    <td> {{ schedule?.doctor?.fullname }} </td>
+                                    <td> {{ schedule?.specialty?.description }} </td>
+                                    <td> {{ schedule?.date }} </td>
+                                    <td *ngIf=schedule?.code>
+                                        <app-view-schedule [selectedSchedule]=schedule (scheduleUpdated)=getData()></app-view-schedule>
                                         <button 
                                             (click)=cancelSchedule(schedule.code)
-                                            *ngIf="schedule.status.code != 2; else canceled" class="btn btn-md btn-danger m-1">
+                                            *ngIf="schedule.status?.code == 3; else otherStatus" class="btn btn-md btn-danger m-1">
                                             <i class="fa fa-times"></i> Cancelar consulta
                                         </button>
-                                        <ng-template #canceled>
-                                            <button class="btn btn-md btn-outline-danger m-1" disabled>
+                                        <ng-template #otherStatus>
+                                            <button *ngIf="schedule.status?.code == 2; else executed" class="btn btn-md btn-outline-danger m-1" disabled>
                                                 <i class="fa fa-times"></i> Cancelada
                                             </button>
+                                            <ng-template #executed>
+                                                <button class="btn btn-md btn-outline-success m-1" disabled>
+                                                    <i class="fa fa-check"></i> Atendimento realizado
+                                                </button>
+                                            </ng-template>
                                         </ng-template>
                                     </td>
                                 </tr>

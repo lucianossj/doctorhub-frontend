@@ -31,7 +31,12 @@ export class ScheduleService {
     return this.rest.removeSchedule(code);
   }
 
-  public cancelSchedule(code: number): Observable<void> {
+  
+  public cancelSchedule(code?: number): Observable<void> {
     return this.rest.cancelSchedule(code);
+  }
+
+  public finishSchedule(code: number): Observable<void> {
+    return this.rest.finishSchedule(code);
   }
 }

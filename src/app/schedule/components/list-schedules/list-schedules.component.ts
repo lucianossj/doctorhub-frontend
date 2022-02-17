@@ -41,14 +41,14 @@ export class ListSchedulesComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  public cancelSchedule(code: number): void {
+  public cancelSchedule(code?: number): void {
     this.alert.confirmation('Tem certeza que deseja cancelar essa consulta?', 'Confirmar')
       .then(result => {
         if (result) this.confirmCancel(code)
       });
   }
 
-  private confirmCancel(code: number): void {
+  private confirmCancel(code?: number): void {
     this.subscriptions.add(
       this.service.cancelSchedule(code).subscribe(
         () => this.manageScheduleCancelSuccess()

@@ -1,0 +1,77 @@
+<button class="btn btn-md btn-primary" (click)=openModal(modal)>
+    <i class="fa fa-eye"></i> Visualizar ficha de atendimento
+</button>
+
+<ng-template #modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title"> <i class="fa fa-user-doctor"></i> Ficha de Atendimento - Paciente {{ selectedSchedule.patient?.fullname }}</h3>
+            <hr>
+        </div>
+        <div class="modal-body">
+
+            <div class="row mt-1">
+                <div class="col-md-4">
+                    <label>Data consulta:</label>
+                    <span> {{ selectedSchedule.date }}</span>
+                </div>
+                <div class="col-md-4">
+                    <label>Horário:</label>
+                    <span> {{ selectedSchedule.hour }}</span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label>Nome paciente:</label>
+                    <span> {{ selectedSchedule.patient?.fullname }}</span>
+                </div>
+                <div class="col-md-4">
+                    <label>Sexo:</label>
+                    <span> {{ selectedSchedule.patient?.gender }}</span>
+                </div>
+                <div class="col-md-4">
+                    <label>Data de nascimento:</label>
+                    <span> {{ selectedSchedule.patient?.birth }}</span>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label>Médico:</label>
+                    <span> Dr. {{ selectedSchedule.doctor?.fullname }}</span>
+                </div>
+                <div class="col-md-4">
+                    <label>Especialidade:</label>
+                    <span> {{ selectedSchedule.specialty?.description }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()"> 
+                <i class="fa fa-times-circle"></i>
+                Fechar
+            </button>
+            <button 
+                (click)=finishSchedule()
+                *ngIf="selectedSchedule.status?.code == 3" class="btn btn-md btn-success m-1">
+                <i class="fa fa-check"></i> Finalizar consulta
+            </button>        
+            <button 
+                (click)=cancelSchedule()
+                *ngIf="selectedSchedule.status?.code == 3; else otherStatus" class="btn btn-md btn-danger m-1">
+                <i class="fa fa-times"></i> Cancelar consulta
+            </button>
+            <ng-template #otherStatus>
+                <button *ngIf="selectedSchedule.status?.code == 2; else executed" class="btn btn-md btn-outline-danger m-1" disabled>
+                    <i class="fa fa-times"></i> Cancelada
+                </button>
+                <ng-template #executed>
+                    <button class="btn btn-md btn-outline-success m-1" disabled>
+                        <i class="fa fa-check"></i> Atendimento realizado
+                    </button>
+                </ng-template>
+            </ng-template>
+        </div>
+    </div>
+</ng-template>

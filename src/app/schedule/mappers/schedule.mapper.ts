@@ -22,10 +22,10 @@ export class ScheduleMapper {
         return Builder<InsertScheduleRequest>()
             .date(model.date)
             .hour(model.hour)
-            .status(model.status.code)
-            .specialty(model.specialty.code)
-            .doctor(model.doctor.code)
-            .patient(model.patient.code)
+            .status(model.status?.code)
+            .specialty(model.specialty?.code)
+            .doctor(model.doctor?.code)
+            .patient(model.patient?.code)
         .build();
     }
 
