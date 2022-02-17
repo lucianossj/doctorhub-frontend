@@ -25,11 +25,11 @@
                 <div class="row mt-1">
                     <div class="col-md-6">
                         <label>Data:</label>
-                        <input type="text" class="form-control" formControlName="date" mask="00/00/0000">
+                        <input type="date" [min]="today" class="form-control" formControlName="date">
                     </div>
                     <div class="col-md-6">
                         <label>Hora:</label>
-                        <input type="text" class="form-control" formControlName="hour" mask="00:00">
+                        <input type="time" class="form-control" formControlName="hour">
                     </div>
                 </div>
 

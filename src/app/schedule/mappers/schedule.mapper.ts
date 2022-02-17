@@ -1,4 +1,6 @@
 import { Builder } from "builder-pattern";
+import * as moment from 'moment';
+
 import { InsertScheduleRequest } from "../integration/request/insert-schedule.request";
 import { ScheduleFormModel } from "../models/schedule-form.model";
 import { ScheduleModel } from "../models/schedule.model";
@@ -7,7 +9,7 @@ export class ScheduleMapper {
     
     public static formModelToRequest(model: ScheduleFormModel): InsertScheduleRequest {
         return Builder<InsertScheduleRequest>()
-            .date(model.date)
+            .date(moment(model.date).format('DD/MM/YYYY'))
             .hour(model.hour)
             .status(model.status)
             .specialty(model.specialty)

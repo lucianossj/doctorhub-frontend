@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
+
 import { DoctorModel } from 'src/app/doctor/models/doctor.model';
 import { PatientModel } from 'src/app/patient/models/patient.model';
 import { ScheduleFormModel } from 'src/app/schedule/models/schedule-form.model';
-import { ScheduleModel } from 'src/app/schedule/models/schedule.model';
 import { ScheduleService } from 'src/app/schedule/services/schedule.service';
 import { GenericDataModel } from 'src/app/shared/services/data/models/generic-data.model';
-import { GenericPersonModel } from 'src/app/shared/services/data/models/generic-person.model';
 import { AlertService } from 'src/app/shared/services/utils/alert.service';
 
 @Component({
@@ -86,7 +87,7 @@ export class NewScheduleComponent implements OnInit {
     this.form = this.formBuilder.group({
       date: [null, Validators.required],
       hour: [null, Validators.required],
-      status: [null, Validators.required],
+      status: [3, Validators.required],
       specialty: [null, Validators.required],
       doctor: [null, Validators.required],
       patient: [null, Validators.required]
@@ -95,17 +96,22 @@ export class NewScheduleComponent implements OnInit {
   
   get doctorsToSelect(): DoctorModel[] {
     const specialtyCode = this.form.get(`specialty`)?.value;
-    return specialtyCode ? this.doctors.filter(specialty => specialty.code == specialtyCode) : this.doctors;
+    return specialtyCode ? this.doctors.filter(doc => doc.specialty?.code == specialtyCode) : this.doctors;
   }
 
   get specialtyToSelect(): GenericDataModel[] {
     const doctorCode = this.form.get(`doctor`)?.value;
     const specialtyCode = this.doctors.find(doc => doc.code == doctorCode)?.specialty?.code;
-    return specialtyCode ? this.specialties.filter(specialty => specialty.code == specialtyCode) : this.specialties;
+    this.form.get(`specialty`)?.setValue(specialtyCode);
+    return this.specialties;
   }
 
   get schedule(): ScheduleFormModel {
     return this.form.getRawValue();
+  }
+
+  get today(): string {
+    return moment().format('YYYY-MM-DD');
   }
 
 }
